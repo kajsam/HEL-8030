@@ -79,11 +79,13 @@ leveneTest(sys ~ ses, data = bldprs) # but this is not the full picture
 lm_s_adj = lm(sys ~ pulse, data = bldprs) # make a model with the control variable
 bldprs$res_adj = lm_s_adj$residuals # access the residuals
 
+# The same thing should be done for ses, but we cannot do that since ses is a factor
+
 lm_res = lm(res_adj ~ ses, data = bldprs) # make a model with the residuals as outcome
 summary(lm_res)
 summary(lm_sps) # see?
 
-leveneTest(res_adj ~ ses, data = bldprs) # this is the full picture
+leveneTest(res_adj ~ ses, data = bldprs) # this is the asjusted picture
 
 ## Does the analysis confirm significant differences in expected systolic blood pressure between the three 
 ## socioeconomic status groups controlled for pulse frequency? 
